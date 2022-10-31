@@ -1,0 +1,1632 @@
+[hzd@192 gopath]$ source /etc/profile
+[hzd@192 gopath]$ go version
+go version go1.17 linux/amd64
+[hzd@192 gopath]$ go env -w GOPROXY=https://goproxy.cn,direct
+[hzd@192 gopath]$ go env
+GO111MODULE=""
+GOARCH="amd64"
+GOBIN=""
+GOCACHE="/home/hzd/.cache/go-build"
+GOENV="/home/hzd/.config/go/env"
+GOEXE=""
+GOEXPERIMENT=""
+GOFLAGS=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOINSECURE=""
+GOMODCACHE="/data/gopath/pkg/mod"
+GONOPROXY=""
+GONOSUMDB=""
+GOOS="linux"
+GOPATH="/data/gopath"
+GOPRIVATE=""
+GOPROXY="https://goproxy.cn,direct"
+GOROOT="/usr/local/go"
+GOSUMDB="sum.golang.org"
+GOTMPDIR=""
+GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
+GOVCS=""
+GOVERSION="go1.17"
+GCCGO="gccgo"
+AR="ar"
+CC="gcc"
+CXX="g++"
+CGO_ENABLED="1"
+GOMOD="/dev/null"
+CGO_CFLAGS="-g -O2"
+CGO_CPPFLAGS=""
+CGO_CXXFLAGS="-g -O2"
+CGO_FFLAGS="-g -O2"
+CGO_LDFLAGS="-g -O2"
+PKG_CONFIG="pkg-config"
+GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build894372692=/tmp/go-build -gno-record-gcc-switches"
+[hzd@192 gopath]$ go version
+go version go1.17 linux/amd64
+[hzd@192 gopath]$ gcc --version
+gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+Copyright © 2015 Free Software Foundation, Inc.
+本程序是自由软件；请参看源代码的版权声明。本软件没有任何担保；
+包括没有适销性和某一专用目的下的适用性担保。
+[hzd@192 gopath]$ sudo yum install centos-release-scl
+[sudo] hzd 的密码：
+已加载插件：fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: mirrors.bfsu.edu.cn
+ * centos-sclo-rh: mirrors.cn99.com
+ * centos-sclo-sclo: mirrors.bfsu.edu.cn
+ * extras: mirrors.cn99.com
+ * updates: mirrors.cn99.com
+软件包 centos-release-scl-2-3.el7.centos.noarch 已安装并且是最新版本
+无须任何处理
+[hzd@192 gopath]$ sudo yum install devtoolset-7-gcc*
+已加载插件：fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: mirrors.bfsu.edu.cn
+ * centos-sclo-rh: mirrors.cn99.com
+ * centos-sclo-sclo: mirrors.bfsu.edu.cn
+ * extras: mirrors.cn99.com
+ * updates: mirrors.cn99.com
+软件包 devtoolset-7-gcc-c++-7.3.1-5.16.el7.x86_64 已安装并且是最新版本
+软件包 devtoolset-7-gcc-gdb-plugin-7.3.1-5.16.el7.x86_64 已安装并且是最新版本
+软件包 devtoolset-7-gcc-plugin-devel-7.3.1-5.16.el7.x86_64 已安装并且是最新版本
+软件包 devtoolset-7-gcc-gfortran-7.3.1-5.16.el7.x86_64 已安装并且是最新版本
+软件包 devtoolset-7-gcc-7.3.1-5.16.el7.x86_64 已安装并且是最新版本
+无须任何处理
+[hzd@192 gopath]$ scl enable devtoolset-7 bash
+[hzd@192 gopath]$ git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
+fatal: 不能为 'chainmaker-go' 创建工作区目录。: ????
+[hzd@192 gopath]$ sudo su
+[root@192 gopath]# git clone https://git.chainmaker.org.cn/chainmaker/chainmaker-go.git
+正克隆到 'chainmaker-go'...
+Username for 'https://git.chainmaker.org.cn': hzd
+Password for 'https://hzd@git.chainmaker.org.cn': 
+remote: Enumerating objects: 56119, done.
+remote: Counting objects: 100% (56119/56119), done.
+remote: Compressing objects: 100% (14203/14203), done.
+remote: Total 56119 (delta 41833), reused 54909 (delta 40658), pack-reused 0
+接收对象中: 100% (56119/56119), 276.45 MiB | 2.29 MiB/s, done.
+处理 delta 中: 100% (41833/41833), done.
+[root@192 gopath]# git clone -b v2.2.0 https://git.chainmaker.org.cn/chainmaker/chainmaker-cryptogen.git
+正克隆到 'chainmaker-cryptogen'...
+Username for 'https://git.chainmaker.org.cn': hzd
+Password for 'https://hzd@git.chainmaker.org.cn': 
+remote: Enumerating objects: 665, done.
+remote: Counting objects: 100% (665/665), done.
+remote: Compressing objects: 100% (372/372), done.
+remote: Total 665 (delta 393), reused 476 (delta 284), pack-reused 0
+接收对象中: 100% (665/665), 132.68 KiB | 0 bytes/s, done.
+处理 delta 中: 100% (393/393), done.
+Note: checking out '5018911d0b52b7c53583f74e39c9ca8eb751b6eb'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+[root@192 gopath]# cd chainmaker-cryptogen
+[root@192 chainmaker-cryptogen]# make
+go: chainmaker.org/chainmaker/common/v2@v2.2.0: Get "https://proxy.golang.org/chainmaker.org/chainmaker/common/v2/@v/v2.2.0.mod": dial tcp 172.217.160.113:443: connect: connection refused
+go: downloading github.com/pkg/errors v0.9.1
+go: downloading github.com/spf13/viper v1.7.1
+go: downloading chainmaker.org/chainmaker/common/v2 v2.2.0
+go: downloading github.com/spf13/cobra v1.1.1
+go: downloading github.com/mr-tron/base58 v1.2.0
+go: chainmaker.org/chainmaker/common/v2@v2.2.0: Get "https://proxy.golang.org/chainmaker.org/chainmaker/common/v2/@v/v2.2.0.mod": dial tcp 172.217.160.113:443: connect: connection refused
+make: *** [chainmaker-cryptogen] 错误 1
+[root@192 chainmaker-cryptogen]# make
+go: chainmaker.org/chainmaker/common/v2@v2.2.0: Get "https://proxy.golang.org/chainmaker.org/chainmaker/common/v2/@v/v2.2.0.mod": dial tcp 172.217.160.113:443: connect: connection refused
+go: downloading github.com/spf13/cobra v1.1.1
+go: downloading github.com/pkg/errors v0.9.1
+go: downloading github.com/spf13/viper v1.7.1
+go: downloading chainmaker.org/chainmaker/common/v2 v2.2.0
+go: downloading github.com/mr-tron/base58 v1.2.0
+go: chainmaker.org/chainmaker/common/v2@v2.2.0: Get "https://proxy.golang.org/chainmaker.org/chainmaker/common/v2/@v/v2.2.0.mod": dial tcp 172.217.160.113:443: connect: connection refused
+make: *** [chainmaker-cryptogen] 错误 1
+[root@192 chainmaker-cryptogen]# vim /etc/profile
+[root@192 chainmaker-cryptogen]# source /etc/profile
+[root@192 chainmaker-cryptogen]# make
+go: downloading github.com/spf13/cobra v1.1.1
+go: downloading github.com/pkg/errors v0.9.1
+go: downloading github.com/spf13/viper v1.7.1
+go: downloading chainmaker.org/chainmaker/common/v2 v2.2.0
+go: downloading github.com/mr-tron/base58 v1.2.0
+go: downloading github.com/fsnotify/fsnotify v1.4.7
+go: downloading github.com/hashicorp/hcl v1.0.0
+go: downloading github.com/magiconair/properties v1.8.1
+go: downloading github.com/mitchellh/mapstructure v1.1.2
+go: downloading github.com/pelletier/go-toml v1.2.0
+go: downloading github.com/spf13/afero v1.5.1
+go: downloading github.com/spf13/cast v1.3.0
+go: downloading github.com/spf13/jwalterweatherman v1.0.0
+go: downloading github.com/spf13/pflag v1.0.5
+go: downloading github.com/subosito/gotenv v1.2.0
+go: downloading gopkg.in/ini.v1 v1.51.0
+go: downloading gopkg.in/yaml.v2 v2.3.0
+go: downloading github.com/stretchr/testify v1.7.0
+go: downloading github.com/inconshreveable/mousetrap v1.0.0
+go: downloading github.com/tjfoc/gmsm v1.4.1
+go: downloading github.com/multiformats/go-multiaddr v0.3.1
+go: downloading golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
+go: downloading github.com/google/uuid v1.1.2
+go: downloading github.com/btcsuite/btcd v0.21.0-beta
+go: downloading github.com/miekg/pkcs11 v1.0.3
+go: downloading golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: downloading github.com/BurntSushi/toml v0.3.1
+go: downloading golang.org/x/text v0.3.6
+go: downloading github.com/gogo/protobuf v1.3.2
+go: downloading github.com/libp2p/go-libp2p-core v0.6.1
+go: downloading github.com/libp2p/go-openssl v0.0.7
+go: downloading github.com/minio/sha256-simd v0.1.1
+go: downloading github.com/multiformats/go-multihash v0.0.14
+go: downloading github.com/smartystreets/goconvey v1.6.4
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: downloading gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+go: downloading gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15
+go: downloading github.com/ipfs/go-cid v0.0.7
+go: downloading github.com/multiformats/go-varint v0.0.6
+go: downloading github.com/spacemonkeygo/spacelog v0.0.0-20180420211403-2296661a0572
+go: downloading github.com/minio/blake2b-simd v0.0.0-20160723061019-3f5f724cb5b1
+go: downloading github.com/spaolacci/murmur3 v1.1.0
+go: downloading github.com/kr/pretty v0.1.0
+go: downloading github.com/multiformats/go-multibase v0.0.3
+go: downloading github.com/kr/text v0.1.0
+go: downloading github.com/multiformats/go-base36 v0.1.0
+go: downloading github.com/multiformats/go-base32 v0.0.3
+go: downloading github.com/jtolds/gls v4.20.0+incompatible
+go: downloading github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d
+go: downloading github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1
+chainmaker-cryptogen/
+chainmaker-cryptogen/bin/
+chainmaker-cryptogen/bin/chainmaker-cryptogen
+chainmaker-cryptogen/config/
+chainmaker-cryptogen/config/crypto_config_template.yml
+[root@192 chainmaker-cryptogen]# cd chainmaker-go/tools
+bash: cd: chainmaker-go/tools: 没有那个文件或目录
+[root@192 chainmaker-cryptogen]# cd ../chainmaker-go/tools
+[root@192 tools]# ln -s ../../chainmaker-cryptogen/ .
+[root@192 tools]# cd ../scripts
+[root@192 scripts]# ./prepare.sh -h
+Usage:  
+  prepare.sh node_cnt(1/4/7/10/13/16) chain_cnt(1-4) p2p_port(default:11301) rpc_port(default:12301)
+    eg1: prepare.sh 4 1
+    eg2: prepare.sh 4 1 11301 12301
+[root@192 scripts]# ./prepare.sh 4 1
+begin check params...
+begin generate certs, cnt: 4
+input consensus type (0-SOLO,1-TBFT(default),3-MAXBFT,4-RAFT): 
+input log level (DEBUG|INFO(default)|WARN|ERROR): 
+enable docker vm (YES|NO(default))
+config node total 4
+begin generate node1 config...
+begin node1 chain1 cert config...
+begin node1 trust config...
+begin generate node2 config...
+begin node2 chain1 cert config...
+begin node2 trust config...
+begin generate node3 config...
+begin node3 chain1 cert config...
+begin node3 trust config...
+begin generate node4 config...
+begin node4 chain1 cert config...
+begin node4 trust config...
+[root@192 scripts]# tree -L 3 ../build/
+../build/
+├── config
+│   ├── node1
+│   │   ├── certs
+│   │   ├── chainconfig
+│   │   ├── chainmaker.yml
+│   │   └── log.yml
+│   ├── node2
+│   │   ├── certs
+│   │   ├── chainconfig
+│   │   ├── chainmaker.yml
+│   │   └── log.yml
+│   ├── node3
+│   │   ├── certs
+│   │   ├── chainconfig
+│   │   ├── chainmaker.yml
+│   │   └── log.yml
+│   └── node4
+│       ├── certs
+│       ├── chainconfig
+│       ├── chainmaker.yml
+│       └── log.yml
+├── crypto-config
+│   ├── wx-org1.chainmaker.org
+│   │   ├── ca
+│   │   ├── node
+│   │   └── user
+│   ├── wx-org2.chainmaker.org
+│   │   ├── ca
+│   │   ├── node
+│   │   └── user
+│   ├── wx-org3.chainmaker.org
+│   │   ├── ca
+│   │   ├── node
+│   │   └── user
+│   └── wx-org4.chainmaker.org
+│       ├── ca
+│       ├── node
+│       └── user
+├── crypto_config.yml
+└── pkcs11_keys.yml
+
+30 directories, 10 files
+[root@192 scripts]# ./build_release.sh
+build chainmaker /home/gopath/chainmaker-go...
+verifying github.com/oleiade/reflections@v1.0.0/go.mod: checksum mismatch
+	downloaded: h1:rdFxbxq4QXVZWj0F+e9jqjDkc7dbp97vkRixKo2JR60=
+	go.sum:     h1:RbATFBbKYkVdqmSFtx13Bb/tVhR0lgOBXunWTZKeL4w=
+
+SECURITY ERROR
+This download does NOT match an earlier download recorded in go.sum.
+The bits may have been replaced on the origin server, or an attacker may
+have intercepted the download attempt.
+
+For more information, see 'go help module-auth'.
+make: *** [chainmaker] 错误 1
+[root@192 scripts]# ls
+3rd                     gomod_make_new_branch.sh  range_cluster_quick_start.sh
+bin                     gomod_merge.sh            service
+build_release.sh        gomod_update.sh           test
+cluster_quick_start.sh  prepare_pk.sh             ut_cover.sh
+cluster_quick_stop.sh   prepare_pwk.sh
+docker                  prepare.sh
+[root@192 scripts]# cd ..
+[root@192 chainmaker-go]# ls
+build      config-sql  go.sum   Makefile  NOTICE     test
+config     DOCKER      LICENSE  module    README.md  tools
+config-pk  go.mod      main     monitor   scripts
+[root@192 chainmaker-go]# go clean -modcache
+[root@192 chainmaker-go]# rm go.sum
+rm：是否删除普通文件 "go.sum"？y
+[root@192 chainmaker-go]# 
+[root@192 chainmaker-go]# go mod tidy
+go: chainmaker.org/chainmaker/store/v2@v2.2.1 requires
+	chainmaker.org/chainmaker/store-tikv/v2@v2.2.1 requires
+	github.com/yiyanwannian/client-go@v1.0.2 requires
+	github.com/tikv/pd@v1.1.0-beta.0.20210122094357-c7aac753461a requires
+	github.com/pingcap-incubator/tidb-dashboard@v0.0.0-20210104140916-41a0a3a87e75 requires
+	github.com/oleiade/reflections@v1.0.0: verifying go.mod: checksum mismatch
+	downloaded: h1:rdFxbxq4QXVZWj0F+e9jqjDkc7dbp97vkRixKo2JR60=
+	sum.golang.org: h1:RbATFBbKYkVdqmSFtx13Bb/tVhR0lgOBXunWTZKeL4w=
+
+SECURITY ERROR
+This download does NOT match the one reported by the checksum server.
+The bits may have been replaced on the origin server, or an attacker may
+have intercepted the download attempt.
+
+For more information, see 'go help module-auth'.
+
+go: downloading chainmaker.org/chainmaker/protocol/v2 v2.2.2
+go: downloading chainmaker.org/chainmaker/pb-go/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/utils/v2 v2.2.2
+go: downloading github.com/stretchr/testify v1.7.0
+go: downloading chainmaker.org/chainmaker/common/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/localconf/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/logger/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/vm-native/v2 v2.2.2
+go: downloading chainmaker.org/chainmaker/vm/v2 v2.2.2
+go: downloading github.com/hokaccha/go-prettyjson v0.0.0-20201222001619-a42f9ac2ec8e
+go: downloading github.com/holiman/uint256 v1.2.0
+go: downloading github.com/panjf2000/ants/v2 v2.4.7
+go: downloading github.com/prometheus/client_golang v1.11.0
+go: downloading chainmaker.org/chainmaker/store/v2 v2.2.1
+go: downloading code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
+go: downloading github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
+go: downloading github.com/mitchellh/mapstructure v1.4.2
+go: downloading github.com/spf13/cobra v1.1.3
+go: downloading github.com/spf13/pflag v1.0.5
+go: downloading chainmaker.org/chainmaker/consensus-dpos/v2 v2.2.0
+go: downloading chainmaker.org/chainmaker/consensus-maxbft/v2 v2.2.0
+go: downloading chainmaker.org/chainmaker/consensus-raft/v2 v2.2.0
+go: downloading chainmaker.org/chainmaker/consensus-solo/v2 v2.2.0
+go: downloading chainmaker.org/chainmaker/consensus-tbft/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/consensus-utils/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/txpool-batch/v2 v2.2.2
+go: downloading chainmaker.org/chainmaker/txpool-single/v2 v2.2.2
+go: downloading chainmaker.org/chainmaker/vm-docker-go/v2 v2.2.2
+go: downloading chainmaker.org/chainmaker/vm-evm/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/vm-gasm/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/vm-wasmer/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/vm-wxvm/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/chainconf/v2 v2.2.2
+go: downloading github.com/golang/mock v1.6.0
+go: downloading chainmaker.org/chainmaker/net-common v1.1.1
+go: downloading chainmaker.org/chainmaker/net-libp2p v1.1.2
+go: downloading chainmaker.org/chainmaker/net-liquid v1.0.2
+go: downloading github.com/gogo/protobuf v1.3.2
+go: downloading github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
+go: downloading golang.org/x/time v0.0.0-20210608053304-ed9ce3a009e4
+go: downloading google.golang.org/grpc v1.26.0
+go: downloading github.com/Workiva/go-datastructures v1.0.53
+go: downloading github.com/mr-tron/base58 v1.2.0
+go: downloading go.uber.org/atomic v1.7.0
+go: downloading github.com/rcrowley/go-metrics v0.0.0-20190826022208-cac0b30c2563
+go: downloading github.com/GuoxinL/cuckoo-filter v0.4.1
+go: downloading github.com/ethereum/go-ethereum v1.10.4
+go: downloading chainmaker.org/chainmaker/sdk-go/v2 v2.2.1
+go: downloading gorm.io/driver/mysql v1.2.0
+go: downloading gorm.io/gorm v1.22.3
+go: downloading github.com/gosuri/uiprogress v0.0.1
+go: downloading github.com/c-bata/go-prompt v0.2.2
+go: downloading github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
+go: downloading golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
+go: downloading github.com/spf13/viper v1.7.1
+go: downloading github.com/syndtr/goleveldb v1.0.1-0.20210305035536-64b5b1c73954
+go: downloading github.com/hpcloud/tail v1.0.0
+go: downloading github.com/Rican7/retry v0.1.0
+go: downloading github.com/tidwall/pretty v1.2.0
+go: downloading google.golang.org/genproto v0.0.0-20210828152312-66f60bf46e71
+go: downloading github.com/google/go-cmp v0.5.6
+go: downloading github.com/fsnotify/fsnotify v1.5.1
+go: downloading github.com/pelletier/go-toml v1.8.1
+go: downloading github.com/spf13/afero v1.5.1
+go: downloading github.com/gosuri/uilive v0.0.4
+go: chainmaker.org/chainmaker/store/v2@v2.2.1 requires
+	chainmaker.org/chainmaker/store-tikv/v2@v2.2.1 requires
+	github.com/yiyanwannian/client-go@v1.0.2 requires
+	github.com/tikv/pd@v1.1.0-beta.0.20210122094357-c7aac753461a requires
+	github.com/pingcap-incubator/tidb-dashboard@v0.0.0-20210104140916-41a0a3a87e75 requires
+	github.com/oleiade/reflections@v1.0.0: verifying go.mod: checksum mismatch
+	downloaded: h1:rdFxbxq4QXVZWj0F+e9jqjDkc7dbp97vkRixKo2JR60=
+	sum.golang.org: h1:RbATFBbKYkVdqmSFtx13Bb/tVhR0lgOBXunWTZKeL4w=
+
+SECURITY ERROR
+This download does NOT match the one reported by the checksum server.
+The bits may have been replaced on the origin server, or an attacker may
+have intercepted the download attempt.
+
+For more information, see 'go help module-auth'.
+
+[root@192 chainmaker-go]# cd scripts
+[root@192 scripts]# ./build_release.sh
+build chainmaker /home/gopath/chainmaker-go...
+go: chainmaker.org/chainmaker/store/v2@v2.2.1 requires
+	chainmaker.org/chainmaker/store-tikv/v2@v2.2.1 requires
+	github.com/yiyanwannian/client-go@v1.0.2 requires
+	github.com/tikv/pd@v1.1.0-beta.0.20210122094357-c7aac753461a requires
+	github.com/pingcap-incubator/tidb-dashboard@v0.0.0-20210104140916-41a0a3a87e75 requires
+	github.com/oleiade/reflections@v1.0.0: verifying go.mod: checksum mismatch
+	downloaded: h1:rdFxbxq4QXVZWj0F+e9jqjDkc7dbp97vkRixKo2JR60=
+	sum.golang.org: h1:RbATFBbKYkVdqmSFtx13Bb/tVhR0lgOBXunWTZKeL4w=
+
+SECURITY ERROR
+This download does NOT match the one reported by the checksum server.
+The bits may have been replaced on the origin server, or an attacker may
+have intercepted the download attempt.
+
+For more information, see 'go help module-auth'.
+
+go: chainmaker.org/chainmaker/store/v2@v2.2.1 requires
+	chainmaker.org/chainmaker/store-tikv/v2@v2.2.1 requires
+	github.com/yiyanwannian/client-go@v1.0.2 requires
+	github.com/tikv/pd@v1.1.0-beta.0.20210122094357-c7aac753461a requires
+	github.com/pingcap-incubator/tidb-dashboard@v0.0.0-20210104140916-41a0a3a87e75 requires
+	github.com/oleiade/reflections@v1.0.0: verifying go.mod: checksum mismatch
+	downloaded: h1:rdFxbxq4QXVZWj0F+e9jqjDkc7dbp97vkRixKo2JR60=
+	sum.golang.org: h1:RbATFBbKYkVdqmSFtx13Bb/tVhR0lgOBXunWTZKeL4w=
+
+SECURITY ERROR
+This download does NOT match the one reported by the checksum server.
+The bits may have been replaced on the origin server, or an attacker may
+have intercepted the download attempt.
+
+For more information, see 'go help module-auth'.
+
+make: *** [chainmaker] 错误 1
+[root@192 scripts]# cd ..
+[root@192 chainmaker-go]# go env -w GOSUMDB=off
+[root@192 chainmaker-go]# 
+[root@192 chainmaker-go]# go mod tidy
+go: downloading github.com/onsi/ginkgo v1.16.4
+go: downloading github.com/inconshreveable/mousetrap v1.0.0
+go: downloading github.com/onsi/gomega v1.16.0
+go: downloading go.uber.org/zap v1.19.1
+go: downloading github.com/tjfoc/gmsm v1.4.1
+go: downloading github.com/google/uuid v1.3.0
+go: downloading github.com/pingcap/parser v0.0.0-20200623164729-3a18f1e5dceb
+go: downloading github.com/studyzy/sqlparse v0.0.0-20210520090832-d40c792e1576
+go: downloading chainmaker.org/chainmaker/raftwal/v2 v2.1.0
+go: downloading github.com/thoas/go-funk v0.9.1
+go: downloading go.etcd.io/etcd/client/pkg/v3 v3.5.1
+go: downloading go.etcd.io/etcd/raft/v3 v3.5.1
+go: downloading go.etcd.io/etcd/server/v3 v3.5.1
+go: downloading github.com/fatih/color v1.9.0
+go: downloading github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+go: downloading go.etcd.io/etcd v3.3.25+incompatible
+go: downloading github.com/beorn7/perks v1.0.1
+go: downloading github.com/cespare/xxhash/v2 v2.1.1
+go: downloading github.com/golang/protobuf v1.5.2
+go: downloading github.com/cespare/xxhash v1.1.0
+go: downloading github.com/prometheus/client_model v0.2.0
+go: downloading github.com/prometheus/common v0.26.0
+go: downloading github.com/prometheus/procfs v0.6.0
+go: downloading golang.org/x/sys v0.0.0-20220222200937-f2425489ef4c
+go: downloading github.com/btcsuite/btcd v0.21.0-beta
+go: downloading github.com/pkg/errors v0.9.1
+go: downloading chainmaker.org/chainmaker/lws v0.0.0-20220330115225-c69ad75c8a23
+go: downloading github.com/multiformats/go-multiaddr v0.3.2
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: downloading gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+go: downloading github.com/miekg/pkcs11 v1.0.3
+go: downloading chainmaker.org/chainmaker/libp2p-pubsub v1.1.2
+go: downloading github.com/libp2p/go-libp2p v0.11.0
+go: downloading github.com/libp2p/go-libp2p-circuit v0.3.1
+go: downloading chainmaker.org/chainmaker/libp2p-core v1.0.0
+go: downloading golang.org/x/net v0.0.0-20210525063256-abc453219eb5
+go: downloading github.com/json-iterator/go v1.1.11
+go: downloading github.com/dgryski/go-metro v0.0.0-20200812162917-85c65e2d0165
+go: downloading github.com/libp2p/go-libp2p-kad-dht v0.10.0
+go: downloading github.com/allegro/bigcache/v3 v3.0.2
+go: downloading github.com/allegro/bigcache v1.2.1
+go: downloading golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+go: downloading github.com/go-sql-driver/mysql v1.6.0
+go: downloading github.com/mattn/go-colorable v0.1.4
+go: downloading github.com/mattn/go-runewidth v0.0.9
+go: downloading github.com/mattn/go-tty v0.0.0-20180907095812-13ff1204f104
+go: downloading github.com/pkg/term v0.0.0-20180730021639-bffc007b7fd5
+go: downloading github.com/jinzhu/now v1.1.2
+go: downloading gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
+go: downloading github.com/hashicorp/hcl v1.0.0
+go: downloading github.com/magiconair/properties v1.8.1
+go: downloading github.com/spf13/cast v1.3.0
+go: downloading github.com/spf13/jwalterweatherman v1.0.0
+go: downloading github.com/subosito/gotenv v1.2.0
+go: downloading gopkg.in/ini.v1 v1.51.0
+go: downloading gopkg.in/yaml.v2 v2.4.0
+go: downloading go.uber.org/multierr v1.6.0
+go: downloading github.com/benbjohnson/clock v1.1.0
+go: downloading go.uber.org/goleak v1.1.11-0.20210813005559-691160354723
+go: downloading github.com/pingcap/errors v0.11.5-0.20201126102027-b0a155152ca3
+go: downloading github.com/pingcap/check v0.0.0-20200212061837-5e12011dc712
+go: downloading github.com/tidwall/gjson v1.10.2
+go: downloading github.com/tidwall/tinylru v1.1.0
+go: downloading go.etcd.io/etcd/pkg/v3 v3.5.1
+go: downloading github.com/mattn/go-isatty v0.0.11
+go: downloading google.golang.org/protobuf v1.27.1
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369
+go: downloading github.com/libp2p/go-openssl v0.0.7
+go: downloading github.com/multiformats/go-multihash v0.0.14
+go: downloading github.com/minio/sha256-simd v0.1.1
+go: downloading github.com/ipfs/go-cid v0.0.7
+go: downloading github.com/multiformats/go-varint v0.0.6
+go: downloading github.com/longxibendi/redisbloom-go v1.1.0
+go: downloading chainmaker.org/chainmaker/store-leveldb/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/store-sqldb/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/store-badgerdb/v2 v2.2.1
+go: downloading chainmaker.org/chainmaker/store-tikv/v2 v2.2.1
+go: downloading gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f
+go: downloading github.com/xiaotianfork/q-tls-common v0.1.4
+go: downloading github.com/xiaotianfork/quic-go v0.26.0
+go: downloading github.com/libp2p/go-libp2p-discovery v0.5.0
+go: downloading github.com/libp2p/go-msgio v0.0.6
+go: downloading github.com/multiformats/go-multiaddr-net v0.2.0
+go: downloading github.com/multiformats/go-multistream v0.1.2
+go: downloading github.com/whyrusleeping/timecache v0.0.0-20160911033111-cfcb2f1abfee
+go: downloading github.com/ipfs/go-log v1.0.4
+go: downloading github.com/libp2p/go-libp2p-blankhost v0.2.0
+go: downloading github.com/libp2p/go-libp2p-connmgr v0.2.4
+go: downloading github.com/libp2p/go-libp2p-swarm v0.2.8
+go: downloading github.com/libp2p/go-libp2p-mplex v0.2.4
+go: downloading github.com/libp2p/go-libp2p-noise v0.1.1
+go: downloading github.com/libp2p/go-libp2p-peerstore v0.2.6
+go: downloading github.com/libp2p/go-libp2p-tls v0.1.3
+go: downloading github.com/libp2p/go-libp2p-yamux v0.2.8
+go: downloading github.com/libp2p/go-tcp-transport v0.2.1
+go: downloading github.com/libp2p/go-ws-transport v0.3.1
+go: downloading github.com/libp2p/go-libp2p-transport-upgrader v0.3.0
+go: downloading github.com/libp2p/go-buffer-pool v0.0.2
+go: downloading github.com/jbenet/goprocess v0.1.4
+go: downloading github.com/cznic/mathutil v0.0.0-20181122101859-297441e03548
+go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: downloading github.com/modern-go/reflect2 v1.0.2
+go: downloading github.com/google/gopacket v1.1.18
+go: downloading github.com/ipfs/go-datastore v0.4.5
+go: downloading github.com/ipfs/go-ipfs-util v0.0.2
+go: downloading github.com/ipfs/go-ipns v0.0.2
+go: downloading github.com/libp2p/go-eventbus v0.2.1
+go: downloading github.com/libp2p/go-libp2p-kbucket v0.4.7
+go: downloading github.com/libp2p/go-libp2p-record v0.1.3
+go: downloading github.com/libp2p/go-netroute v0.1.3
+go: downloading github.com/multiformats/go-base32 v0.0.3
+go: downloading github.com/multiformats/go-multibase v0.0.3
+go: downloading go.opencensus.io v0.23.0
+go: downloading github.com/ipfs/go-detect-race v0.0.1
+go: downloading github.com/libp2p/go-libp2p-testing v0.2.0
+go: downloading github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+go: downloading github.com/jinzhu/inflection v1.0.0
+go: downloading gopkg.in/fsnotify.v1 v1.4.7
+go: downloading github.com/lestrrat-go/strftime v1.0.3
+go: downloading github.com/golang/snappy v0.0.3
+go: downloading golang.org/x/text v0.3.7
+go: downloading github.com/smartystreets/goconvey v1.6.4
+go: downloading github.com/pingcap/log v0.0.0-20201112100606-8f1e84a3abc8
+go: downloading github.com/pingcap/tidb v1.1.0-beta.0.20200630082100-328b6d0a955c
+go: downloading github.com/nxadm/tail v1.4.8
+go: downloading golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
+go: downloading github.com/tidwall/match v1.1.1
+go: downloading github.com/cockroachdb/datadriven v0.0.0-20200714090401-bf6692d28da5
+go: downloading github.com/dustin/go-humanize v1.0.0
+go: downloading github.com/spaolacci/murmur3 v1.1.0
+go: downloading github.com/minio/blake2b-simd v0.0.0-20160723061019-3f5f724cb5b1
+go: downloading github.com/gomodule/redigo v2.0.0+incompatible
+go: downloading github.com/yiyanwannian/goleveldb v1.0.1-0.20220111065830-b053cb868885
+go: downloading github.com/stretchr/objx v0.2.0
+go: downloading github.com/coreos/go-semver v0.3.0
+go: downloading github.com/spacemonkeygo/spacelog v0.0.0-20180420211403-2296661a0572
+go: downloading github.com/mattn/go-sqlite3 v2.0.1+incompatible
+go: downloading github.com/yiyanwannian/badger/v3 v3.2111.29
+go: downloading github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e
+go: downloading github.com/yiyanwannian/client-go v1.0.2
+go: downloading github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d
+go: downloading github.com/libp2p/go-flow-metrics v0.0.3
+go: downloading github.com/ipfs/go-log/v2 v2.1.1
+go: downloading github.com/opentracing/opentracing-go v1.2.0
+go: downloading github.com/libp2p/go-conn-security-multistream v0.2.0
+go: downloading github.com/libp2p/go-stream-muxer-multistream v0.3.0
+go: downloading github.com/flynn/noise v0.0.0-20180327030543-2492fe189ae6
+go: downloading github.com/libp2p/go-libp2p-autonat v0.3.2
+go: downloading github.com/libp2p/go-addr-util v0.0.2
+go: downloading github.com/libp2p/go-libp2p-nat v0.0.6
+go: downloading github.com/multiformats/go-multiaddr-dns v0.2.0
+go: downloading github.com/jbenet/go-cienv v0.1.0
+go: downloading github.com/cheekybits/genny v1.0.0
+go: downloading github.com/libp2p/go-mplex v0.1.2
+go: downloading github.com/libp2p/go-libp2p-loggables v0.1.0
+go: downloading github.com/whyrusleeping/multiaddr-filter v0.0.0-20160516205228-e903e4adabd7
+go: downloading github.com/multiformats/go-multiaddr-fmt v0.1.0
+go: downloading github.com/libp2p/go-yamux v1.3.7
+go: downloading github.com/libp2p/go-yamux/v2 v2.2.0
+go: downloading github.com/libp2p/go-reuseport v0.0.2
+go: downloading github.com/libp2p/go-reuseport-transport v0.0.4
+go: downloading github.com/gorilla/websocket v1.4.3-0.20220104015952-9111bb834a68
+go: downloading github.com/jbenet/go-temp-err-catcher v0.1.0
+go: downloading github.com/libp2p/go-libp2p-pnet v0.2.0
+go: downloading github.com/remyoudompheng/bigfft v0.0.0-20200410134404-eec4a21b6bb0
+go: downloading github.com/whyrusleeping/go-keyspace v0.0.0-20160322163242-5b898ac5add1
+go: downloading github.com/hashicorp/go-multierror v1.1.0
+go: downloading github.com/libp2p/go-cidranger v1.1.0
+go: downloading github.com/libp2p/go-libp2p-asn-util v0.0.0-20200825225859-85005c6cf052
+go: downloading github.com/libp2p/go-libp2p-netutil v0.1.0
+go: downloading golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
+go: downloading github.com/libp2p/go-sockaddr v0.0.2
+go: downloading github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239
+go: downloading github.com/jehiah/go-strftime v0.0.0-20171201141054-1d33003b3869
+go: downloading github.com/lestrrat-go/envload v0.0.0-20180220234015-a3eb8ddeffcc
+go: downloading github.com/tebeka/strftime v0.1.5
+go: downloading github.com/multiformats/go-base36 v0.1.0
+go: downloading gopkg.in/natefinch/lumberjack.v2 v2.0.0
+go: downloading github.com/jtolds/gls v4.20.0+incompatible
+go: downloading github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d
+go: downloading github.com/cockroachdb/errors v1.2.4
+go: downloading github.com/kr/text v0.2.0
+go: downloading github.com/pingcap/kvproto v0.0.0-20210219095907-b2375dcc80ad
+go: downloading github.com/tikv/pd v1.1.0-beta.0.20210122094357-c7aac753461a
+go: downloading github.com/libp2p/go-nat v0.0.5
+go: downloading github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0
+go: downloading github.com/xiaotianfork/qtls-go1-15 v0.1.19
+go: downloading github.com/xiaotianfork/qtls-go1-16 v0.1.19
+go: downloading github.com/xiaotianfork/qtls-go1-17 v0.1.19
+go: downloading github.com/xiaotianfork/qtls-go1-18 v0.1.19
+go: downloading github.com/hashicorp/errwrap v1.0.0
+go: downloading github.com/davidlazar/go-crypto v0.0.0-20170701192655-dcfb0a7ac018
+go: downloading github.com/pingcap/tipb v0.0.0-20210425040103-dc47a87b52aa
+go: downloading github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible
+go: downloading golang.org/x/tools v0.1.5
+go: downloading github.com/BurntSushi/toml v0.3.1
+go: downloading github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1
+go: downloading github.com/google/btree v1.0.1
+go: downloading github.com/sirupsen/logrus v1.8.1
+go: downloading github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
+go: downloading github.com/pingcap/goleveldb v0.0.0-20191226122134-f82aafb29989
+go: downloading github.com/cockroachdb/logtags v0.0.0-20190617123548-eb05cc24525f
+go: downloading github.com/getsentry/raven-go v0.2.0
+go: downloading github.com/dgraph-io/ristretto v0.1.0
+go: downloading github.com/huin/goupnp v1.0.1-0.20210310174557-0ca763054c88
+go: downloading github.com/jackpal/go-nat-pmp v1.0.2
+go: downloading github.com/koron/go-ssdp v0.0.0-20191105050749-2e1c40ed0b5d
+go: downloading github.com/kr/pretty v0.2.1
+go: downloading github.com/certifi/gocertifi v0.0.0-20200922220541-2c3bb06c6054
+go: downloading github.com/google/flatbuffers v2.0.0+incompatible
+go: downloading github.com/klauspost/compress v1.12.3
+go: downloading github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d
+go: downloading github.com/OneOfOne/xxhash v1.2.8
+go: downloading github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2
+go: downloading github.com/coreos/etcd v3.3.25+incompatible
+go: downloading github.com/go-ole/go-ole v1.2.4
+go: downloading github.com/docker/go-units v0.4.0
+go: downloading github.com/juju/ratelimit v1.0.1
+go: downloading github.com/aws/aws-sdk-go v1.35.3
+go: downloading github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f
+go: downloading github.com/montanaflynn/stats v0.5.0
+go: downloading github.com/phf/go-queue v0.0.0-20170504031614-9abe38d0371d
+go: downloading github.com/grpc-ecosystem/grpc-gateway v1.16.0
+go: downloading github.com/soheilhy/cmux v0.1.5
+go: downloading github.com/tmc/grpc-websocket-proxy v0.0.0-20201229170055-e5319fda7802
+go: downloading sigs.k8s.io/yaml v1.2.0
+go: downloading github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f
+go: downloading github.com/pingcap/failpoint v0.0.0-20200702092429-9f69995143ce
+go: downloading github.com/cakturk/go-netstat v0.0.0-20200220111822-e5b49efee7a5
+go: downloading github.com/dgrijalva/jwt-go v3.2.0+incompatible
+go: downloading github.com/jonboulle/clockwork v0.2.2
+go: downloading github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2
+go: downloading golang.org/x/mod v0.4.2
+go: downloading github.com/coreos/bbolt v1.3.2
+go: downloading go.etcd.io/bbolt v1.3.6
+go: downloading github.com/jmespath/go-jmespath v0.4.0
+go: downloading github.com/jmespath/go-jmespath/internal/testify v1.5.1
+[root@192 chainmaker-go]# go env -w GOSUMDB=GOSUMDB="sum.golang.org"
+[root@192 chainmaker-go]# cd scripts
+[root@192 scripts]# ./build_release.sh
+build chainmaker /home/gopath/chainmaker-go...
+tar zcf crypto-config...
+tar: 从成员名中删除开头的“../”
+tar zcf chainmaker-v2.2.1-wx-org1.chainmaker.org...
+tar zcf chainmaker-v2.2.1-wx-org2.chainmaker.org...
+tar zcf chainmaker-v2.2.1-wx-org3.chainmaker.org...
+tar zcf chainmaker-v2.2.1-wx-org4.chainmaker.org...
+[root@192 scripts]# tree ../build/release/
+../build/release/
+├── chainmaker-v2.2.1-wx-org1.chainmaker.org-20220723182330-x86_64.tar.gz
+├── chainmaker-v2.2.1-wx-org2.chainmaker.org-20220723182330-x86_64.tar.gz
+├── chainmaker-v2.2.1-wx-org3.chainmaker.org-20220723182330-x86_64.tar.gz
+├── chainmaker-v2.2.1-wx-org4.chainmaker.org-20220723182330-x86_64.tar.gz
+└── crypto-config-20220723182330.tar.gz
+
+0 directories, 5 files
+[root@192 scripts]# ./cluster_quick_start.sh normal
+===> Unzip chainmaker installation package
+chainmaker-v2.2.1-wx-org1.chainmaker.org/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/chainmaker
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/start.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/stop.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/restart.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/docker-vm-standalone-start.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/docker-vm-standalone-stop.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/chainmaker.service
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/init.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/run.sh
+chainmaker-v2.2.1-wx-org1.chainmaker.org/lib/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/lib/libwasmer.so
+chainmaker-v2.2.1-wx-org1.chainmaker.org/lib/wxdec
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org1.chainmaker.org/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org1.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org2.chainmaker.org/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org2.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org3.chainmaker.org/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org3.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org4.chainmaker.org/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/ca/wx-org4.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/consensus1/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/consensus1/consensus1.sign.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/consensus1/consensus1.sign.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/consensus1/consensus1.tls.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/consensus1/consensus1.tls.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/consensus1/consensus1.nodeid
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/common1/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/common1/common1.sign.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/common1/common1.sign.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/common1/common1.tls.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/common1/common1.tls.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/node/common1/common1.nodeid
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/admin1/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/admin1/admin1.sign.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/admin1/admin1.sign.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/admin1/admin1.tls.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/admin1/admin1.tls.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/client1/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/client1/client1.sign.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/client1/client1.sign.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/client1/client1.tls.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/client1/client1.tls.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/client1/client1.addr
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/light1/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/light1/light1.sign.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/light1/light1.sign.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/light1/light1.tls.key
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/certs/user/light1/light1.tls.crt
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/chainconfig/
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/chainconfig/bc1.yml
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/chainmaker.yml
+chainmaker-v2.2.1-wx-org1.chainmaker.org/config/wx-org1.chainmaker.org/log.yml
+chainmaker-v2.2.1-wx-org1.chainmaker.org/log/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/chainmaker
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/start.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/stop.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/restart.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/docker-vm-standalone-start.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/docker-vm-standalone-stop.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/chainmaker.service
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/init.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/bin/run.sh
+chainmaker-v2.2.1-wx-org2.chainmaker.org/lib/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/lib/libwasmer.so
+chainmaker-v2.2.1-wx-org2.chainmaker.org/lib/wxdec
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org1.chainmaker.org/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org1.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org2.chainmaker.org/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org2.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org3.chainmaker.org/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org3.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org4.chainmaker.org/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/ca/wx-org4.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/consensus1/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/consensus1/consensus1.sign.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/consensus1/consensus1.sign.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/consensus1/consensus1.tls.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/consensus1/consensus1.tls.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/consensus1/consensus1.nodeid
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/common1/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/common1/common1.sign.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/common1/common1.sign.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/common1/common1.tls.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/common1/common1.tls.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/node/common1/common1.nodeid
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/admin1/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/admin1/admin1.sign.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/admin1/admin1.sign.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/admin1/admin1.tls.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/admin1/admin1.tls.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/client1/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/client1/client1.sign.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/client1/client1.sign.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/client1/client1.tls.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/client1/client1.tls.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/client1/client1.addr
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/light1/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/light1/light1.sign.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/light1/light1.sign.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/light1/light1.tls.key
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/certs/user/light1/light1.tls.crt
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/chainconfig/
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/chainconfig/bc1.yml
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/chainmaker.yml
+chainmaker-v2.2.1-wx-org2.chainmaker.org/config/wx-org2.chainmaker.org/log.yml
+chainmaker-v2.2.1-wx-org2.chainmaker.org/log/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/chainmaker
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/start.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/stop.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/restart.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/docker-vm-standalone-start.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/docker-vm-standalone-stop.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/chainmaker.service
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/init.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/bin/run.sh
+chainmaker-v2.2.1-wx-org3.chainmaker.org/lib/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/lib/libwasmer.so
+chainmaker-v2.2.1-wx-org3.chainmaker.org/lib/wxdec
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org1.chainmaker.org/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org1.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org2.chainmaker.org/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org2.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org3.chainmaker.org/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org3.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org4.chainmaker.org/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/ca/wx-org4.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/consensus1/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/consensus1/consensus1.sign.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/consensus1/consensus1.sign.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/consensus1/consensus1.tls.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/consensus1/consensus1.tls.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/consensus1/consensus1.nodeid
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/common1/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/common1/common1.sign.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/common1/common1.sign.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/common1/common1.tls.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/common1/common1.tls.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/node/common1/common1.nodeid
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/admin1/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/admin1/admin1.sign.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/admin1/admin1.sign.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/admin1/admin1.tls.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/admin1/admin1.tls.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/client1/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/client1/client1.sign.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/client1/client1.sign.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/client1/client1.tls.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/client1/client1.tls.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/client1/client1.addr
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/light1/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/light1/light1.sign.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/light1/light1.sign.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/light1/light1.tls.key
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/certs/user/light1/light1.tls.crt
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/chainconfig/
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/chainconfig/bc1.yml
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/chainmaker.yml
+chainmaker-v2.2.1-wx-org3.chainmaker.org/config/wx-org3.chainmaker.org/log.yml
+chainmaker-v2.2.1-wx-org3.chainmaker.org/log/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/chainmaker
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/start.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/stop.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/restart.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/docker-vm-standalone-start.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/docker-vm-standalone-stop.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/chainmaker.service
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/init.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/bin/run.sh
+chainmaker-v2.2.1-wx-org4.chainmaker.org/lib/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/lib/libwasmer.so
+chainmaker-v2.2.1-wx-org4.chainmaker.org/lib/wxdec
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org1.chainmaker.org/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org1.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org2.chainmaker.org/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org2.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org3.chainmaker.org/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org3.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org4.chainmaker.org/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/ca/wx-org4.chainmaker.org/ca.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/consensus1/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/consensus1/consensus1.sign.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/consensus1/consensus1.sign.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/consensus1/consensus1.tls.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/consensus1/consensus1.tls.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/consensus1/consensus1.nodeid
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/common1/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/common1/common1.sign.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/common1/common1.sign.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/common1/common1.tls.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/common1/common1.tls.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/node/common1/common1.nodeid
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/admin1/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/admin1/admin1.sign.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/admin1/admin1.sign.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/admin1/admin1.tls.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/admin1/admin1.tls.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/client1/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/client1/client1.sign.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/client1/client1.sign.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/client1/client1.tls.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/client1/client1.tls.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/client1/client1.addr
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/light1/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/light1/light1.sign.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/light1/light1.sign.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/light1/light1.tls.key
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/certs/user/light1/light1.tls.crt
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/chainconfig/
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/chainconfig/bc1.yml
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/chainmaker.yml
+chainmaker-v2.2.1-wx-org4.chainmaker.org/config/wx-org4.chainmaker.org/log.yml
+chainmaker-v2.2.1-wx-org4.chainmaker.org/log/
+===> Starting chainmaker cluster
+START ==>  /home/gopath/chainmaker-go/build/release/chainmaker-v2.2.1-wx-org1.chainmaker.org
+chainmaker is startting, pls check log...
+START ==>  /home/gopath/chainmaker-go/build/release/chainmaker-v2.2.1-wx-org2.chainmaker.org
+chainmaker is startting, pls check log...
+START ==>  /home/gopath/chainmaker-go/build/release/chainmaker-v2.2.1-wx-org3.chainmaker.org
+chainmaker is startting, pls check log...
+START ==>  /home/gopath/chainmaker-go/build/release/chainmaker-v2.2.1-wx-org4.chainmaker.org
+chainmaker is startting, pls check log...
+[root@192 scripts]# tree ../build/release/ -l 3
+../build/release/
+├── chainmaker-v2.2.1-wx-org1.chainmaker.org
+│   ├── bin
+│   │   ├── chainmaker
+│   │   ├── chainmaker.service
+│   │   ├── docker-vm-standalone-start.sh
+│   │   ├── docker-vm-standalone-stop.sh
+│   │   ├── init.sh
+│   │   ├── panic.log
+│   │   ├── restart.sh
+│   │   ├── run.sh
+│   │   ├── start.sh
+│   │   └── stop.sh
+│   ├── config
+│   │   └── wx-org1.chainmaker.org
+│   │       ├── certs
+│   │       │   ├── ca
+│   │       │   │   ├── wx-org1.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org2.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org3.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   └── wx-org4.chainmaker.org
+│   │       │   │       └── ca.crt
+│   │       │   ├── node
+│   │       │   │   ├── common1
+│   │       │   │   │   ├── common1.nodeid
+│   │       │   │   │   ├── common1.sign.crt
+│   │       │   │   │   ├── common1.sign.key
+│   │       │   │   │   ├── common1.tls.crt
+│   │       │   │   │   └── common1.tls.key
+│   │       │   │   └── consensus1
+│   │       │   │       ├── consensus1.nodeid
+│   │       │   │       ├── consensus1.sign.crt
+│   │       │   │       ├── consensus1.sign.key
+│   │       │   │       ├── consensus1.tls.crt
+│   │       │   │       └── consensus1.tls.key
+│   │       │   └── user
+│   │       │       ├── admin1
+│   │       │       │   ├── admin1.sign.crt
+│   │       │       │   ├── admin1.sign.key
+│   │       │       │   ├── admin1.tls.crt
+│   │       │       │   └── admin1.tls.key
+│   │       │       ├── client1
+│   │       │       │   ├── client1.addr
+│   │       │       │   ├── client1.sign.crt
+│   │       │       │   ├── client1.sign.key
+│   │       │       │   ├── client1.tls.crt
+│   │       │       │   └── client1.tls.key
+│   │       │       └── light1
+│   │       │           ├── light1.sign.crt
+│   │       │           ├── light1.sign.key
+│   │       │           ├── light1.tls.crt
+│   │       │           └── light1.tls.key
+│   │       ├── chainconfig
+│   │       │   └── bc1.yml
+│   │       ├── chainmaker.yml
+│   │       └── log.yml
+│   ├── data
+│   │   └── wx-org1.chainmaker.org
+│   │       ├── block
+│   │       │   └── chain1
+│   │       │       └── store_block
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── history
+│   │       │   └── chain1
+│   │       │       └── store_history
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── ledgerData1
+│   │       │   └── chain1
+│   │       │       ├── bfdb
+│   │       │       │   └── 00000000000000000001.fdb.END
+│   │       │       ├── localdb
+│   │       │       │   ├── 000001.log
+│   │       │       │   ├── CURRENT
+│   │       │       │   ├── LOCK
+│   │       │       │   ├── LOG
+│   │       │       │   └── MANIFEST-000000
+│   │       │       └── wal_QmQvvtKgfkKvrfWW9RA9AtNRhgXp9GqgEsCTjzxxTh2Nmt
+│   │       │           └── 00001_1.wal
+│   │       ├── result
+│   │       │   └── chain1
+│   │       │       └── store_result
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       └── state
+│   │           └── chain1
+│   │               └── store_state
+│   │                   ├── 000001.log
+│   │                   ├── CURRENT
+│   │                   ├── LOCK
+│   │                   ├── LOG
+│   │                   └── MANIFEST-000000
+│   ├── lib
+│   │   ├── libwasmer.so
+│   │   └── wxdec
+│   └── log
+│       ├── system.log -> system.log.2022072318
+│       └── system.log.2022072318
+├── chainmaker-v2.2.1-wx-org1.chainmaker.org-20220723182330-x86_64.tar.gz
+├── chainmaker-v2.2.1-wx-org2.chainmaker.org
+│   ├── bin
+│   │   ├── chainmaker
+│   │   ├── chainmaker.service
+│   │   ├── docker-vm-standalone-start.sh
+│   │   ├── docker-vm-standalone-stop.sh
+│   │   ├── init.sh
+│   │   ├── panic.log
+│   │   ├── restart.sh
+│   │   ├── run.sh
+│   │   ├── start.sh
+│   │   └── stop.sh
+│   ├── config
+│   │   └── wx-org2.chainmaker.org
+│   │       ├── certs
+│   │       │   ├── ca
+│   │       │   │   ├── wx-org1.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org2.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org3.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   └── wx-org4.chainmaker.org
+│   │       │   │       └── ca.crt
+│   │       │   ├── node
+│   │       │   │   ├── common1
+│   │       │   │   │   ├── common1.nodeid
+│   │       │   │   │   ├── common1.sign.crt
+│   │       │   │   │   ├── common1.sign.key
+│   │       │   │   │   ├── common1.tls.crt
+│   │       │   │   │   └── common1.tls.key
+│   │       │   │   └── consensus1
+│   │       │   │       ├── consensus1.nodeid
+│   │       │   │       ├── consensus1.sign.crt
+│   │       │   │       ├── consensus1.sign.key
+│   │       │   │       ├── consensus1.tls.crt
+│   │       │   │       └── consensus1.tls.key
+│   │       │   └── user
+│   │       │       ├── admin1
+│   │       │       │   ├── admin1.sign.crt
+│   │       │       │   ├── admin1.sign.key
+│   │       │       │   ├── admin1.tls.crt
+│   │       │       │   └── admin1.tls.key
+│   │       │       ├── client1
+│   │       │       │   ├── client1.addr
+│   │       │       │   ├── client1.sign.crt
+│   │       │       │   ├── client1.sign.key
+│   │       │       │   ├── client1.tls.crt
+│   │       │       │   └── client1.tls.key
+│   │       │       └── light1
+│   │       │           ├── light1.sign.crt
+│   │       │           ├── light1.sign.key
+│   │       │           ├── light1.tls.crt
+│   │       │           └── light1.tls.key
+│   │       ├── chainconfig
+│   │       │   └── bc1.yml
+│   │       ├── chainmaker.yml
+│   │       └── log.yml
+│   ├── data
+│   │   └── wx-org2.chainmaker.org
+│   │       ├── block
+│   │       │   └── chain1
+│   │       │       └── store_block
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── history
+│   │       │   └── chain1
+│   │       │       └── store_history
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── ledgerData1
+│   │       │   └── chain1
+│   │       │       ├── bfdb
+│   │       │       │   └── 00000000000000000001.fdb.END
+│   │       │       ├── localdb
+│   │       │       │   ├── 000001.log
+│   │       │       │   ├── CURRENT
+│   │       │       │   ├── LOCK
+│   │       │       │   ├── LOG
+│   │       │       │   └── MANIFEST-000000
+│   │       │       └── wal_QmYHn2r3v7yNA7YqttAhCyH7BzdqTzfLymRvaBT2sxnwHr
+│   │       │           └── 00001_1.wal
+│   │       ├── result
+│   │       │   └── chain1
+│   │       │       └── store_result
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       └── state
+│   │           └── chain1
+│   │               └── store_state
+│   │                   ├── 000001.log
+│   │                   ├── CURRENT
+│   │                   ├── LOCK
+│   │                   ├── LOG
+│   │                   └── MANIFEST-000000
+│   ├── lib
+│   │   ├── libwasmer.so
+│   │   └── wxdec
+│   └── log
+│       ├── system.log -> system.log.2022072318
+│       └── system.log.2022072318
+├── chainmaker-v2.2.1-wx-org2.chainmaker.org-20220723182330-x86_64.tar.gz
+├── chainmaker-v2.2.1-wx-org3.chainmaker.org
+│   ├── bin
+│   │   ├── chainmaker
+│   │   ├── chainmaker.service
+│   │   ├── docker-vm-standalone-start.sh
+│   │   ├── docker-vm-standalone-stop.sh
+│   │   ├── init.sh
+│   │   ├── panic.log
+│   │   ├── restart.sh
+│   │   ├── run.sh
+│   │   ├── start.sh
+│   │   └── stop.sh
+│   ├── config
+│   │   └── wx-org3.chainmaker.org
+│   │       ├── certs
+│   │       │   ├── ca
+│   │       │   │   ├── wx-org1.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org2.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org3.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   └── wx-org4.chainmaker.org
+│   │       │   │       └── ca.crt
+│   │       │   ├── node
+│   │       │   │   ├── common1
+│   │       │   │   │   ├── common1.nodeid
+│   │       │   │   │   ├── common1.sign.crt
+│   │       │   │   │   ├── common1.sign.key
+│   │       │   │   │   ├── common1.tls.crt
+│   │       │   │   │   └── common1.tls.key
+│   │       │   │   └── consensus1
+│   │       │   │       ├── consensus1.nodeid
+│   │       │   │       ├── consensus1.sign.crt
+│   │       │   │       ├── consensus1.sign.key
+│   │       │   │       ├── consensus1.tls.crt
+│   │       │   │       └── consensus1.tls.key
+│   │       │   └── user
+│   │       │       ├── admin1
+│   │       │       │   ├── admin1.sign.crt
+│   │       │       │   ├── admin1.sign.key
+│   │       │       │   ├── admin1.tls.crt
+│   │       │       │   └── admin1.tls.key
+│   │       │       ├── client1
+│   │       │       │   ├── client1.addr
+│   │       │       │   ├── client1.sign.crt
+│   │       │       │   ├── client1.sign.key
+│   │       │       │   ├── client1.tls.crt
+│   │       │       │   └── client1.tls.key
+│   │       │       └── light1
+│   │       │           ├── light1.sign.crt
+│   │       │           ├── light1.sign.key
+│   │       │           ├── light1.tls.crt
+│   │       │           └── light1.tls.key
+│   │       ├── chainconfig
+│   │       │   └── bc1.yml
+│   │       ├── chainmaker.yml
+│   │       └── log.yml
+│   ├── data
+│   │   └── wx-org3.chainmaker.org
+│   │       ├── block
+│   │       │   └── chain1
+│   │       │       └── store_block
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── history
+│   │       │   └── chain1
+│   │       │       └── store_history
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── ledgerData1
+│   │       │   └── chain1
+│   │       │       ├── bfdb
+│   │       │       │   └── 00000000000000000001.fdb.END
+│   │       │       ├── localdb
+│   │       │       │   ├── 000001.log
+│   │       │       │   ├── CURRENT
+│   │       │       │   ├── LOCK
+│   │       │       │   ├── LOG
+│   │       │       │   └── MANIFEST-000000
+│   │       │       └── wal_QmazBnLcifhfDxvAvi44U1bMaAyhBeRTBqpt7ho178pbUe
+│   │       │           └── 00001_1.wal
+│   │       ├── result
+│   │       │   └── chain1
+│   │       │       └── store_result
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       └── state
+│   │           └── chain1
+│   │               └── store_state
+│   │                   ├── 000001.log
+│   │                   ├── CURRENT
+│   │                   ├── LOCK
+│   │                   ├── LOG
+│   │                   └── MANIFEST-000000
+│   ├── lib
+│   │   ├── libwasmer.so
+│   │   └── wxdec
+│   └── log
+│       ├── system.log -> system.log.2022072318
+│       └── system.log.2022072318
+├── chainmaker-v2.2.1-wx-org3.chainmaker.org-20220723182330-x86_64.tar.gz
+├── chainmaker-v2.2.1-wx-org4.chainmaker.org
+│   ├── bin
+│   │   ├── chainmaker
+│   │   ├── chainmaker.service
+│   │   ├── docker-vm-standalone-start.sh
+│   │   ├── docker-vm-standalone-stop.sh
+│   │   ├── init.sh
+│   │   ├── panic.log
+│   │   ├── restart.sh
+│   │   ├── run.sh
+│   │   ├── start.sh
+│   │   └── stop.sh
+│   ├── config
+│   │   └── wx-org4.chainmaker.org
+│   │       ├── certs
+│   │       │   ├── ca
+│   │       │   │   ├── wx-org1.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org2.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   ├── wx-org3.chainmaker.org
+│   │       │   │   │   └── ca.crt
+│   │       │   │   └── wx-org4.chainmaker.org
+│   │       │   │       └── ca.crt
+│   │       │   ├── node
+│   │       │   │   ├── common1
+│   │       │   │   │   ├── common1.nodeid
+│   │       │   │   │   ├── common1.sign.crt
+│   │       │   │   │   ├── common1.sign.key
+│   │       │   │   │   ├── common1.tls.crt
+│   │       │   │   │   └── common1.tls.key
+│   │       │   │   └── consensus1
+│   │       │   │       ├── consensus1.nodeid
+│   │       │   │       ├── consensus1.sign.crt
+│   │       │   │       ├── consensus1.sign.key
+│   │       │   │       ├── consensus1.tls.crt
+│   │       │   │       └── consensus1.tls.key
+│   │       │   └── user
+│   │       │       ├── admin1
+│   │       │       │   ├── admin1.sign.crt
+│   │       │       │   ├── admin1.sign.key
+│   │       │       │   ├── admin1.tls.crt
+│   │       │       │   └── admin1.tls.key
+│   │       │       ├── client1
+│   │       │       │   ├── client1.addr
+│   │       │       │   ├── client1.sign.crt
+│   │       │       │   ├── client1.sign.key
+│   │       │       │   ├── client1.tls.crt
+│   │       │       │   └── client1.tls.key
+│   │       │       └── light1
+│   │       │           ├── light1.sign.crt
+│   │       │           ├── light1.sign.key
+│   │       │           ├── light1.tls.crt
+│   │       │           └── light1.tls.key
+│   │       ├── chainconfig
+│   │       │   └── bc1.yml
+│   │       ├── chainmaker.yml
+│   │       └── log.yml
+│   ├── data
+│   │   └── wx-org4.chainmaker.org
+│   │       ├── block
+│   │       │   └── chain1
+│   │       │       └── store_block
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── history
+│   │       │   └── chain1
+│   │       │       └── store_history
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       ├── ledgerData1
+│   │       │   └── chain1
+│   │       │       ├── bfdb
+│   │       │       │   └── 00000000000000000001.fdb.END
+│   │       │       ├── localdb
+│   │       │       │   ├── 000001.log
+│   │       │       │   ├── CURRENT
+│   │       │       │   ├── LOCK
+│   │       │       │   ├── LOG
+│   │       │       │   └── MANIFEST-000000
+│   │       │       └── wal_QmTbPNBRqrbp1CYZnYq2o844VgY2NXeqnbeUWPB2GjRVMU
+│   │       │           └── 00001_1.wal
+│   │       ├── result
+│   │       │   └── chain1
+│   │       │       └── store_result
+│   │       │           ├── 000001.log
+│   │       │           ├── CURRENT
+│   │       │           ├── LOCK
+│   │       │           ├── LOG
+│   │       │           └── MANIFEST-000000
+│   │       └── state
+│   │           └── chain1
+│   │               └── store_state
+│   │                   ├── 000001.log
+│   │                   ├── CURRENT
+│   │                   ├── LOCK
+│   │                   ├── LOG
+│   │                   └── MANIFEST-000000
+│   ├── lib
+│   │   ├── libwasmer.so
+│   │   └── wxdec
+│   └── log
+│       ├── system.log -> system.log.2022072318
+│       └── system.log.2022072318
+├── chainmaker-v2.2.1-wx-org4.chainmaker.org-20220723182330-x86_64.tar.gz
+└── crypto-config-20220723182330.tar.gz
+3 [error opening dir]
+
+156 directories, 289 files
+[root@192 scripts]# cat ../bulid/release/chainmaker-v2.2.0_alpha-wx-orgl.chainmaker.org/bin/start.sh
+cat: ../bulid/release/chainmaker-v2.2.0_alpha-wx-orgl.chainmaker.org/bin/start.sh: 没有那个文件或目录
+[root@192 scripts]# cat ../bulid/release/chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/start.sh
+cat: ../bulid/release/chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/start.sh: 没有那个文件或目录
+[root@192 scripts]# cat ../build/release/chainmaker-v2.2.1-wx-org1.chainmaker.org/bin/start.sh
+#!/bin/bash
+#
+# Copyright (C) BABEC. All rights reserved.
+# Copyright (C) THL A29 Limited, a Tencent company. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+export LD_LIBRARY_PATH=$(dirname $PWD)/lib:$LD_LIBRARY_PATH
+export PATH=$(dirname $PWD)/lib:$PATH
+export WASMER_BACKTRACE=1
+
+config_file="../config/wx-org1.chainmaker.org/chainmaker.yml"
+
+# if clean existed container(can be -y/-f/force)
+FORCE_CLEAN=$1
+
+# if enable docker vm service and use unix domain socket, run a vm docker container
+start_docker_vm() {
+  image_name="chainmakerofficial/chainmaker-vm-docker-go:v2.2.1"
+
+  container_name=DOCKERVM-wx-org1.chainmaker.org
+  echo "start docker vm service container: $container_name"
+  #check container exists
+  exist=$(docker ps -f name="$container_name" --format '{{.Names}}')
+  if [ "$exist" ]; then
+    echo "$container_name already RUNNING, please stop it first."
+    exit 1
+  fi
+
+  exist=$(docker ps -a -f name="$container_name" --format '{{.Names}}')
+  if [ "$exist" ]; then
+    echo "$container_name already exists(STOPPED)"
+    if [[ "$FORCE_CLEAN" == "-f" ]] || [ "$FORCE_CLEAN" == "force" ] || [ "$FORCE_CLEAN" == "-y" ]; then
+      echo "remove it:"
+      docker rm $container_name
+    else
+      read -r -p "remove it and start a new container, default: yes (y|n): " need_rm
+      if [ "$need_rm" == "no" ] || [ "$need_rm" == "n" ]; then
+        exit 0
+      else
+        docker rm $container_name
+      fi
+    fi
+  fi
+
+  # concat mount_path and log_path for container to mount
+  mount_path=$(grep dockervm_mount_path $config_file | awk -F: '{gsub(/ /, "", $2);print $2}')
+  log_path=$(grep dockervm_log_path $config_file | awk -F: '{gsub(/ /, "", $2);print $2}')
+  log_level=$(grep log_level $config_file | awk -F: '{gsub(/ /, "", $2);print $2}')
+  log_in_console=$(grep log_in_console $config_file | awk -F: '{gsub(/ /, "", $2);print $2}')
+  if [[ "${mount_path:0:1}" != "/" ]];then
+    mount_path=$(pwd)/$mount_path
+  fi
+  if [[ "${log_path:0:1}" != "/" ]];then
+    log_path=$(pwd)/$log_path
+  fi
+
+  mkdir -p "$mount_path"
+  mkdir -p "$log_path"
+
+  # env params:
+  # ENV_ENABLE_UDS=false
+  # ENV_USER_NUM=100
+  # ENV_TX_TIME_LIMIT=2
+  # ENV_LOG_LEVEL=INFO
+  # ENV_LOG_IN_CONSOLE=false
+  # ENV_MAX_CONCURRENCY=50
+  # ENV_VM_SERVICE_PORT=22359
+  # ENV_ENABLE_PPROF=
+  # ENV_PPROF_PORT=
+  echo "start docker vm service container:"
+  docker run -itd \
+    -e ENV_LOG_IN_CONSOLE="$log_in_console" -e ENV_LOG_LEVEL="$log_level" -e ENV_ENABLE_UDS=true \
+    -e ENV_USER_NUM=1000 -e ENV_MAX_CONCURRENCY=100 -e ENV_TX_TIME_LIMIT=8 \
+    -v "$mount_path":/mount \
+    -v "$log_path":/log \
+    --name DOCKERVM-wx-org1.chainmaker.org \
+    --privileged $image_name
+
+  retval="$?"
+  if [ $retval -ne 0 ]; then
+    echo "Fail to run docker vm."
+    exit 1
+  fi
+
+  echo "waiting for docker vm container to warm up..."
+  sleep 5
+}
+
+
+pid=`ps -ef | grep chainmaker | grep "\-c ../config/wx-org1.chainmaker.org/chainmaker.yml" | grep -v grep |  awk  '{print $2}'`
+if [ -z ${pid} ];then
+
+    # check if need to start docker vm service.
+    enable_docker_vm=$(grep enable_dockervm $config_file | awk -F: '{gsub(/ /, "", $2);print $2}')
+    enable_uds=$(grep uds_open $config_file | awk -F: '{gsub(/ /, "", $2);print $2}')
+    if [[ $enable_docker_vm = "true" && $enable_uds = "true" ]]
+    then
+      start_docker_vm
+    fi
+
+    # start chainmaker
+    #nohup ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml > /dev/null 2>&1 &
+    nohup ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml > panic.log 2>&1 &
+    echo "chainmaker is startting, pls check log..."
+else
+    echo "chainmaker is already started"
+fi
+
+[root@192 scripts]# mkdir -p ../build/bak
+[root@192 scripts]# mv ../build/release/*.tar.gz ../build/bak
+[root@192 scripts]# ps -ef|grep chainmaker | grep -v grep
+root      81049      1  3 18:46 pts/1    00:00:40 ./chainmaker start -c ../config/wx-org1.chainmaker.org/chainmaker.yml
+root      81065      1  3 18:46 pts/1    00:00:40 ./chainmaker start -c ../config/wx-org2.chainmaker.org/chainmaker.yml
+root      81099      1  3 18:46 pts/1    00:00:38 ./chainmaker start -c ../config/wx-org3.chainmaker.org/chainmaker.yml
+root      81122      1  3 18:46 pts/1    00:00:38 ./chainmaker start -c ../config/wx-org4.chainmaker.org/chainmaker.yml
+[root@192 scripts]# netstat -lptn | grep 1230
+tcp6       0      0 :::12301                :::*                    LISTEN      81049/./chainmaker  
+tcp6       0      0 :::12302                :::*                    LISTEN      81065/./chainmaker  
+tcp6       0      0 :::12303                :::*                    LISTEN      81099/./chainmaker  
+tcp6       0      0 :::12304                :::*                    LISTEN      81122/./chainmaker  
+[root@192 scripts]# cd $WORKDIR/chainmaker-go/tools/cmc
+bash: cd: /chainmaker-go/tools/cmc: 没有那个文件或目录
+[root@192 scripts]# cd ../tools/cmc
+[root@192 cmc]# go build
+[root@192 cmc]# cp -rf ../../build/crypto-config/testdata/
+cp: 在"../../build/crypto-config/testdata/" 后缺少了要操作的目标文件
+Try 'cp --help' for more information.
+[root@192 cmc]# rm -rf testdata/*
+[root@192 cmc]# cp -rf ../../build/crypto-config/testdata/
+cp: 在"../../build/crypto-config/testdata/" 后缺少了要操作的目标文件
+Try 'cp --help' for more information.
+[root@192 cmc]# cp -rf ../../build/crypto-config/ testdata/
+[root@192 cmc]# testdata//cmc --help
+bash: testdata//cmc: 没有那个文件或目录
+[root@192 cmc]# ./cmc --help
+Command line interface for interacting with ChainMaker daemon.
+For detailed logs, please see ./sdk.log
+
+Usage:
+  cmc [command]
+
+Available Commands:
+  address      address parse command
+  archive      archive blockchain data
+  bulletproofs ChainMaker bulletproofs command
+  cert         ChainMaker cert command
+  client       client command
+  console      Open a console to interact with ChainMaker daemon
+  gas          gas management
+  help         Help about any command
+  hibe         ChainMaker hibe command
+  key          ChainMaker key command
+  paillier     ChainMaker paillier command
+  parallel     Parallel
+  payload      Payload command
+  pubkey       pk management command.
+  query        query on-chain blockchain data
+  tee          trust execute environment command.
+
+Flags:
+  -h, --help   help for cmc
+
+Use "cmc [command] --help" for more information about a command.
+[root@192 cmc]# ./cmc client contract user create \
+> --contract-name=fact \
+> --runtime-type=WASMER \
+> --byte-code-path=./testdata/claim-wasm-demo/rust-fact-2.0.0.wasm \
+> --version=1.0 \
+> --sdk-conf-path=./testdata/sdk_config.yml \
+> --admin-key-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key,./testdata/crypto-config/wx-org2.chainmaker.org/user/admin1/admin1.tls.key,./testdata/crypto-config/wx-org3.chainmaker.org/user/admin1/admin1.tls.key \
+> --admin-crt-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt,./testdata/crypto-config/wx-org2.chainmaker.org/user/admin1/admin1.tls.crt,./testdata/crypto-config/wx-org3.chainmaker.org/user/admin1/admin1.tls.crt \
+> --sync-result=true \
+> --params="{}"
+Error: read sdk config file failed, init config failed, Load sdk config failed, open ./testdata/sdk_config.yml: no such file or directory
+Usage:
+  cmc client contract user create [flags]
+
+Flags:
+      --abi-file-path string            specify user EVM contract abi file path, eg: /home/abi.json
+      --admin-crt-file-paths string     specify admin cert file paths, use ',' to separate
+      --admin-key-file-paths string     specify admin key file paths, use ',' to separate
+      --admin-org-ids string            specify admin org-ids, use ',' to separate
+      --byte-code-path string           specify user contract byte code path
+      --chain-id string                 specify the chain id, such as: chain1, chain2 etc.
+      --contract-name string            specify user contract name, eg: counter-go-1
+      --enable-cert-hash                whether enable cert hash, default true (default true)
+      --gas-limit uint                  gas limit in uint64 type
+  -h, --help                            help for create
+      --org-id string                   specify the orgId, such as wx-org1.chainmaker.com
+      --params string                   specify invoke contract params, json format, such as: "{\"key\":\"value\",\"key1\":\"value1\"}"
+      --runtime-type string             specify user contract runtime type, such as: NATIVE | WASMER | WXVM | GASM | EVM | DOCKER_GO | DOCKER_JAVA
+      --sdk-conf-path string            specify sdk config path
+      --send-times int                  specify SendTimes , default once (default 1)
+      --sync-result                     whether wait the result of the transaction, default false
+      --timeout int                     specify timeout in seconds, default 10s (default 10)
+      --user-signcrt-file-path string   specify user sign cert file path to sign tx
+      --user-signkey-file-path string   specify user sign key file path to sign tx
+      --user-tlscrt-file-path string    specify user tls cert file path for chainclient tls connection
+      --user-tlskey-file-path string    specify user tls key file path for chainclient tls connection
+      --version string                  specify user contract version, eg: 1.0.0
+
+[root@192 cmc]# git checkout testdata/
+[root@192 cmc]# cp ../../build/c
+cp: 在"../../build/c" 后缺少了要操作的目标文件
+Try 'cp --help' for more information.
+[root@192 cmc]# cp ../../build/crypto-config/ testdata/
+cp: 略过目录"../../build/crypto-config/"
+[root@192 cmc]# cp -r ../../build/crypto-config/ testdata/
+cp：是否覆盖"testdata/crypto-config/wx-org1.chainmaker.org/ca/ca.key"？ ^C
+[root@192 cmc]# rm -rf testdata/crypto-config/
+[root@192 cmc]# cp -r ../../build/crypto-config/ testdata/
+[root@192 cmc]# ./cmc client contract user create \
+> --contract-name=fact \
+> --runtime-type=WASMER \
+> --byte-code-path=./testdata/claim-wasm-demo/rust-fact-2.0.0.wasm \
+> --version=1.0 \
+> --sdk-conf-path=./testdata/sdk_config.yml \
+> --admin-key-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.key,./testdata/crypto-config/wx-org2.chainmaker.org/user/admin1/admin1.tls.key,./testdata/crypto-config/wx-org3.chainmaker.org/user/admin1/admin1.tls.key \
+> --admin-crt-file-paths=./testdata/crypto-config/wx-org1.chainmaker.org/user/admin1/admin1.tls.crt,./testdata/crypto-config/wx-org2.chainmaker.org/user/admin1/admin1.tls.crt,./testdata/crypto-config/wx-org3.chainmaker.org/user/admin1/admin1.tls.crt \
+> --sync-result=true \
+> --params="{}"
+response: contract_result:<result:"\n\004fact\022\0031.0\030\002*\253\001\n\026wx-org1.chainmaker.org\020\001\032 U\257\005\006\347u5'1\360bI\377\205\177t\267B\312\351\275l\204\325\247J\330U\025B\217@\"#client1.sign.wx-org1.chainmaker.org*\006CLIENT2@18adbbbf85b047e4e442cf78a788c2314819ce0096bb7d13ad87a3a2dba6164f" message:"OK" gas_used:1376 > tx_id:"1704a423ce36fb6fca031ad43b6ff06e050b62bed39048839649845e8dd6c702" 
+[root@192 cmc]# ./cmc client contract user invoke \
+> --contract-name=fact \
+> --method=save \
+> --sdk-conf-path=./testdata/sdk_config.yml \
+> --params="{\"file_name\":\"name007\",\"file_hash\":\"ab3456df5799b87c77e7f88\",\"time\":\"6543234\"}" \
+> --sync-result=true
+INVOKE contract resp, [code:0]/[msg:]/[contractResult:gas_used:245007 contract_event:<topic:"topic_vx" tx_id:"1704a45e1f9b3b65ca52fdfc07218265b07f7f71c915492c9f146040c1038d50" contract_name:"fact" contract_version:"1.0" event_data:"ab3456df5799b87c77e7f88" event_data:"name007" event_data:"6543234" > ]/[txId:1704a45e1f9b3b65ca52fdfc07218265b07f7f71c915492c9f146040c1038d50]
+[root@192 cmc]# ./cmc client contract user get \
+> --contract-name=fact \
+> --method=find_by_file_hash \
+> --sdk-conf-path=./testdata/sdk_config.yml \
+> --params="{\"file_hash\":\"ab3456df5799b87c77e7f88\"}"
+QUERY contract resp: message:"SUCCESS" contract_result:<result:"{\"file_hash\":\"ab3456df5799b87c77e7f88\",\"file_name\":\"name007\",\"time\":6543234}" gas_used:375776 > tx_id:"1704a484d8d5f154cab04715502780f082b48a16443c407091c522bb0142d0e5" 
+[root@192 cmc]# 

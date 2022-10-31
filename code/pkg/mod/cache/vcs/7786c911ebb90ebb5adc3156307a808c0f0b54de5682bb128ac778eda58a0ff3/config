@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	ignorecase = true
+[remote "origin"]
+	url = https://git.sr.ht/~sbinet/gg
+	fetch = +refs/heads/*:refs/remotes/origin/*
